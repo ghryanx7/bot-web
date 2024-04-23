@@ -1,0 +1,2638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabbit's Commands</title>
+
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Work+Sans&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Work+Sans:wght@100;400&display=swap");
+
+        @keyframes appear {
+            0% {
+                opacity: 0;
+            }
+        }
+
+        body {
+            animation: appear 3s;
+            display: flex;
+            font-family: 'Work Sans', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; 
+        }
+
+        .sidebar {
+            width: 210px;
+            background-color: #1e1e1e;
+            padding: 20px;
+        }
+
+        .commands-container {
+            flex: 1;
+            background: #040404;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .tab {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #1e1e1e;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 1em; 
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-transform: capitalize;
+        }
+
+        .tab.active {
+            background-color: #0c0c0c;
+        }
+
+        .command-box {
+            background-color: #0c0c0c;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .command-box h3 {
+            color: #ffffff;
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        .command-box p {
+            color: #ffffff;
+            font-size: 0.8em;
+        }
+
+        @media only screen and (min-width: 600px) {
+            .sidebar {
+                display: block;
+            }
+            .commands-container {
+                width: calc(100% - 70px);
+                max-width: calc(100% - 70px);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <div class="tab-container">
+        <button class="tab active" onclick="showAllCommands()">All</button>
+<button class="tab" onclick="showModule('fun')">fun</button><button class="tab" onclick="showModule('information')">information</button><button class="tab" onclick="showModule('lastfm')">lastfm</button><button class="tab" onclick="showModule('miscellaneous')">miscellaneous</button><button class="tab" onclick="showModule('moderation')">moderation</button><button class="tab" onclick="showModule('music')">music</button><button class="tab" onclick="showModule('servers')">servers</button><button class="tab" onclick="showModule('utility')">utility</button></div>
+</div>
+<div class="commands-container">
+<div class="category active" id="all">
+            <div class="command-box">
+                <h3>8ball</h3>
+                <p>Ask the 8ball a question</p>
+                <p>Aliases: 8b</p>
+                <hr>
+                <p>Usage: 8ball <question></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>balance</h3>
+                <p>Check the balance of your bank account</p>
+                <p>Aliases: bal</p>
+                <hr>
+                <p>Usage: balance</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>cuddle</h3>
+                <p>cuddle a server member</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: cuddle <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>deposit</h3>
+                <p>Deposit money from your balance to your bank account.</p>
+                <p>Aliases: dep</p>
+                <hr>
+                <p>Usage: deposit <amount></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>divorce</h3>
+                <p>Divorce your partner</p>
+                <p>Aliases: dvc</p>
+                <hr>
+                <p>Usage: divorce</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>donate</h3>
+                <p>Donate money to another member</p>
+                <p>Aliases: give</p>
+                <hr>
+                <p>Usage: donate <user> (amount)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>esex</h3>
+                <p>Get down and dirty with the bot</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: esex</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>gamble</h3>
+                <p>Gamble your coins for a chance to win or lose</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: gamble <amount></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>generate</h3>
+                <p>Generate an image based on a prompt</p>
+                <p>Aliases: ai</p>
+                <hr>
+                <p>Usage: generate <prompt></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>joke</h3>
+                <p>Get a random joke</p>
+                <p>Aliases: jk</p>
+                <hr>
+                <p>Usage: joke</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>kiss</h3>
+                <p>Kiss a server member</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: kiss <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>marriage</h3>
+                <p>See who a user is married to</p>
+                <p>Aliases: married</p>
+                <hr>
+                <p>Usage: marriage <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>marry</h3>
+                <p>Marry a server member.</p>
+                <p>Aliases: mrryto</p>
+                <hr>
+                <p>Usage: marry <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>rockpaperscissors</h3>
+                <p>Play rock paper scissors with another user</p>
+                <p>Aliases: rps</p>
+                <hr>
+                <p>Usage: rockpaperscissors <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>tickle</h3>
+                <p>tickle a server member</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: tickle <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>uwuify</h3>
+                <p>Uwuify a string of text</p>
+                <p>Aliases: uwu</p>
+                <hr>
+                <p>Usage: uwuify [text]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>withdrawal</h3>
+                <p>Withdraw money from your bank account to your balance.</p>
+                <p>Aliases: with,wd</p>
+                <hr>
+                <p>Usage: withdrawal <amount></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>work</h3>
+                <p>Work to earn coins</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: work</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>avatar</h3>
+                <p>Show the avatar of a specified user.</p>
+                <p>Aliases: av</p>
+                <hr>
+                <p>Usage: avatar [user]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>banner</h3>
+                <p>View a user's banner.</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: banner [user]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>boosters</h3>
+                <p>Shows the members who have boosted the server.</p>
+                <p>Aliases: boosters</p>
+                <hr>
+                <p>Usage: boosters</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>botinfo</h3>
+                <p>Shows information about the bot</p>
+                <p>Aliases: about,bi</p>
+                <hr>
+                <p>Usage: botinfo</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>bots</h3>
+                <p>Shows the bots in the server.</p>
+                <p>Aliases: bots</p>
+                <hr>
+                <p>Usage: bots</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>channels</h3>
+                <p>Shows all channels in the server</p>
+                <p>Aliases: channel</p>
+                <hr>
+                <p>Usage: channels</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>firstmembers</h3>
+                <p>Shows the first members to join the server</p>
+                <p>Aliases: recent</p>
+                <hr>
+                <p>Usage: recentmembers</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>firstmessage</h3>
+                <p>Provides the first message of a channel.</p>
+                <p>Aliases: firstmsg</p>
+                <hr>
+                <p>Usage: firstmessage</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>help</h3>
+                <p>Displays a list of available commands.</p>
+                <p>Aliases: commands,h,cmds</p>
+                <hr>
+                <p>Usage: help [command]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>invite</h3>
+                <p>Invite the bot to your server</p>
+                <p>Aliases: i</p>
+                <hr>
+                <p>Usage: invite</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>invites</h3>
+                <p>Shows the invites of the server.</p>
+                <p>Aliases: inv</p>
+                <hr>
+                <p>Usage: invites</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>joinposition</h3>
+                <p>View the join position of a member.</p>
+                <p>Aliases: jp</p>
+                <hr>
+                <p>Usage: joinposition [member]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>membercount</h3>
+                <p>Shows member count.</p>
+                <p>Aliases: mc,members</p>
+                <hr>
+                <p>Usage: membercount</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>oldest</h3>
+                <p>Shows the oldest members in the server.</p>
+                <p>Aliases: ancient</p>
+                <hr>
+                <p>Usage: oldest</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>ping</h3>
+                <p>Shows the bot's ping.</p>
+                <p>Aliases: latency</p>
+                <hr>
+                <p>Usage: ping</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>recentmembers</h3>
+                <p>Shows the most recent members that joined the server.</p>
+                <p>Aliases: recent</p>
+                <hr>
+                <p>Usage: recentmembers</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>roleinfo</h3>
+                <p>View information about a role</p>
+                <p>Aliases: rinfo</p>
+                <hr>
+                <p>Usage: roleinfo</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>roles</h3>
+                <p>Shows all roles in the server</p>
+                <p>Aliases: role</p>
+                <hr>
+                <p>Usage: roles</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>serverbanner</h3>
+                <p>Show the server banner.</p>
+                <p>Aliases: sbanner</p>
+                <hr>
+                <p>Usage: serverbanner [invite]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>servericon</h3>
+                <p>Show the server icon.</p>
+                <p>Aliases: icon,sicon</p>
+                <hr>
+                <p>Usage: servericon [invite]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>serverinfo</h3>
+                <p>View server information</p>
+                <p>Aliases: si</p>
+                <hr>
+                <p>Usage: serverinfo</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>supportserver</h3>
+                <p>Shows bot support.</p>
+                <p>Aliases: support</p>
+                <hr>
+                <p>Usage: support</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>uptime</h3>
+                <p>Shows bot uptime.</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: uptime</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>userinfo</h3>
+                <p>Get information about a user</p>
+                <p>Aliases: ui</p>
+                <hr>
+                <p>Usage: userinfo <@user></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>vanityuses</h3>
+                <p>Check how many uses your vanity has</p>
+                <p>Aliases: uses</p>
+                <hr>
+                <p>Usage: vanityuses</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>youngest</h3>
+                <p>Shows the youngest members in the server.</p>
+                <p>Aliases: youth</p>
+                <hr>
+                <p>Usage: youngest</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>lastfm</h3>
+                <p>Interact with your music</p>
+                <p>Aliases: lf</p>
+                <hr>
+                <p>Usage: lastfm set larplol</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>nowplaying</h3>
+                <p>Shows your most recent track</p>
+                <p>Aliases: fm,np</p>
+                <hr>
+                <p>Usage: nowplaying</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>profile</h3>
+                <p>View a Last.fm profile</p>
+                <p>Aliases: pf</p>
+                <hr>
+                <p>Usage: profile [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>recent</h3>
+                <p>Shows your most recent tracks</p>
+                <p>Aliases: recenttracks,recentlyplayed</p>
+                <hr>
+                <p>Usage: recent</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>recommend</h3>
+                <p>Recommend a random track based on your listening history</p>
+                <p>Aliases: rec</p>
+                <hr>
+                <p>Usage: recommend</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>topalbums</h3>
+                <p>View your top albums on LastFM</p>
+                <p>Aliases: tal,topalb</p>
+                <hr>
+                <p>Usage: topalbums</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>topartists</h3>
+                <p>View your top artists on LastFM</p>
+                <p>Aliases: topar,ta</p>
+                <hr>
+                <p>Usage: topartists</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>toptracks</h3>
+                <p>View your top tracks on LastFM</p>
+                <p>Aliases: ttr,ttt</p>
+                <hr>
+                <p>Usage: toptracks</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>appstore</h3>
+                <p>Search for an app on the App Store.</p>
+                <p>Aliases: playstore,app</p>
+                <hr>
+                <p>Usage: appstore <query></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>cashapp</h3>
+                <p>View a CashApp profile</p>
+                <p>Aliases: ca</p>
+                <hr>
+                <p>Usage: cashapp [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>fortnite</h3>
+                <p>Fortnite cosmetic-related commands</p>
+                <p>Aliases: fort,fn</p>
+                <hr>
+                <p>Usage: fortnite (subcommands) <args></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>gemini</h3>
+                <p>Generate text with prompts</p>
+                <p>Aliases: gpt,ask,chatgpt</p>
+                <hr>
+                <p>Usage: gemini <prompt></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>github</h3>
+                <p>View a github profile</p>
+                <p>Aliases: git,gh</p>
+                <hr>
+                <p>Usage: github [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>google</h3>
+                <p>Search Google and display the top results</p>
+                <p>Aliases: g</p>
+                <hr>
+                <p>Usage: google <query></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>instagram</h3>
+                <p>Get information on an Instagram profile</p>
+                <p>Aliases: insta,ig</p>
+                <hr>
+                <p>Usage: instagram [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>movie</h3>
+                <p>Get the information about a movie or series.</p>
+                <p>Aliases: series,show</p>
+                <hr>
+                <p>Usage: movie [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>ocr</h3>
+                <p>Extract text from an image</p>
+                <p>Aliases: read</p>
+                <hr>
+                <p>Usage: ocr [attachment]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>pinterestboard</h3>
+                <p>Search pins or view a user's pins on Pinterest</p>
+                <p>Aliases: pint</p>
+                <hr>
+                <p>Usage: pinterest add [channel] (username)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>playstation</h3>
+                <p>Search for a playstation profile</p>
+                <p>Aliases: psn</p>
+                <hr>
+                <p>Usage: playstation [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>pokemon</h3>
+                <p>View information about a Pokémon</p>
+                <p>Aliases: pokedex</p>
+                <hr>
+                <p>Usage: pokedex <pokemon></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>giphy</h3>
+                <p>Search Giphy for a GIF.</p>
+                <p>Aliases: gif</p>
+                <hr>
+                <p>Usage: giphy [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>roblox</h3>
+                <p>Get Roblox user information</p>
+                <p>Aliases: rblx</p>
+                <hr>
+                <p>Usage: roblox [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>snapchat</h3>
+                <p>Search snapchat for a profile</p>
+                <p>Aliases: sc</p>
+                <hr>
+                <p>Usage: snapchat [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>steam</h3>
+                <p>Search Steam for a game</p>
+                <p>Aliases: steamgame</p>
+                <hr>
+                <p>Usage: steam <game></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>telegram</h3>
+                <p>View a Telegram user's information</p>
+                <p>Aliases: tele</p>
+                <hr>
+                <p>Usage: telegram [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>tiktok</h3>
+                <p>Get information on a TikTok profile</p>
+                <p>Aliases: tt</p>
+                <hr>
+                <p>Usage: tiktok [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>twitch</h3>
+                <p>Get Twitch user information</p>
+                <p>Aliases: ttv</p>
+                <hr>
+                <p>Usage: twitch [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>twitter</h3>
+                <p>View a twitter profile</p>
+                <p>Aliases: x</p>
+                <hr>
+                <p>Usage: twitter [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>urban</h3>
+                <p>Shows the definition of a word from Urban Dictionary</p>
+                <p>Aliases: ud</p>
+                <hr>
+                <p>Usage: urban [word]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>valorant</h3>
+                <p>Get information on a Valorant profile</p>
+                <p>Aliases: val</p>
+                <hr>
+                <p>Usage: valorant [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>wikipedia</h3>
+                <p>Search wiki for a query</p>
+                <p>Aliases: wiki</p>
+                <hr>
+                <p>Usage: wikipedia [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>wolfram</h3>
+                <p>Get math answers</p>
+                <p>Aliases: w</p>
+                <hr>
+                <p>Usage: wolfram [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>xbox</h3>
+                <p>View a xbox profile</p>
+                <p>Aliases: xb,xbl</p>
+                <hr>
+                <p>Usage: xbox [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>youtube</h3>
+                <p>Searches youtube for video query</p>
+                <p>Aliases: yt</p>
+                <hr>
+                <p>Usage: youtube [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>ban</h3>
+                <p>Banishes a server member.</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: ban <user> <reason></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>banlist</h3>
+                <p>Shows all banned users in the server</p>
+                <p>Aliases: bans</p>
+                <hr>
+                <p>Usage: banlist</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>cleanup</h3>
+                <p>Purge messages from bots and common prefixes.</p>
+                <p>Aliases: bc,botclear</p>
+                <hr>
+                <p>Usage: cleanup</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>hide</h3>
+                <p>Hide the channel from everyone or a specific role/user.</p>
+                <p>Aliases: hidden</p>
+                <hr>
+                <p>Usage: hide</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>jail</h3>
+                <p>Jails the specified member (sets up upon first use)</p>
+                <p>Aliases: prison</p>
+                <hr>
+                <p>Usage: jail [user] (reason)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>kick</h3>
+                <p>Kicks mentioned user.</p>
+                <p>Aliases: k</p>
+                <hr>
+                <p>Usage: kick [user] (reason)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>lockdown</h3>
+                <p>Locks the channel from everyone</p>
+                <p>Aliases: lock</p>
+                <hr>
+                <p>Usage: lock</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>nuke</h3>
+                <p>Deletes and recreates the current channel.</p>
+                <p>Aliases: recreate</p>
+                <hr>
+                <p>Usage: nuke</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>removejail</h3>
+                <p>Remove the jail from the server</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: removejail</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>role</h3>
+                <p>Manage server roles</p>
+                <p>Aliases: r</p>
+                <hr>
+                <p>Usage: role [subcommand] (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>slowmode</h3>
+                <p>Set the slowmode of a channel</p>
+                <p>Aliases: sm</p>
+                <hr>
+                <p>Usage: slowmode [time]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>softban</h3>
+                <p>Bans a user then unbans instantly</p>
+                <p>Aliases: sb</p>
+                <hr>
+                <p>Usage: softban [member]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>striproles</h3>
+                <p>Strip all of a users roles</p>
+                <p>Aliases: strip</p>
+                <hr>
+                <p>Usage: strip <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>timeout</h3>
+                <p>Temporary timeout a member from the server.</p>
+                <p>Aliases: to</p>
+                <hr>
+                <p>Usage: undefined</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>topic</h3>
+                <p>Set the topic of a channel</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: topic [channel] (topic)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unban</h3>
+                <p>Unban a user by ID or username</p>
+                <p>Aliases: pardon,forgive</p>
+                <hr>
+                <p>Usage: unban [userID]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unhide</h3>
+                <p>Unhides the channel for everyone</p>
+                <p>Aliases: uh</p>
+                <hr>
+                <p>Usage: unhide</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unjail</h3>
+                <p>Release a user from the shackles</p>
+                <p>Aliases: unprison</p>
+                <hr>
+                <p>Usage: unjail [user]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unjailrole</h3>
+                <p>Set the jail role for unjailing users</p>
+                <p>Aliases: ujr</p>
+                <hr>
+                <p>Usage: undefined</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unlock</h3>
+                <p>Unlocks the channel for everyone</p>
+                <p>Aliases: ulock</p>
+                <hr>
+                <p>Usage: unlock</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>warn</h3>
+                <p>Warn a server member.</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: warn <user> <reason></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>warnings</h3>
+                <p>View warnings of a server member.</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: warnings <user></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>clearqueue</h3>
+                <p>Clear the queue.</p>
+                <p>Aliases: cq</p>
+                <hr>
+                <p>Usage: clearqueue</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>currentsong</h3>
+                <p>Show the current song playing</p>
+                <p>Aliases: current</p>
+                <hr>
+                <p>Usage: currentsong</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>disconnect</h3>
+                <p>Disconnect the bot from the voice channel.</p>
+                <p>Aliases: dc</p>
+                <hr>
+                <p>Usage: disconnect</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>filter</h3>
+                <p>Set Music Filter</p>
+                <p>Aliases: filters,setfilter</p>
+                <hr>
+                <p>Usage: filter [filter]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>itunes</h3>
+                <p>Search iTunes for a song</p>
+                <p>Aliases: itu</p>
+                <hr>
+                <p>Usage: itunes [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>loop</h3>
+                <p>Loop the current song</p>
+                <p>Aliases: lp</p>
+                <hr>
+                <p>Usage: loop <on/off></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>pause</h3>
+                <p>Pause the current music.</p>
+                <p>Aliases: pa</p>
+                <hr>
+                <p>Usage: pause</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>play</h3>
+                <p>Play some music.</p>
+                <p>Aliases: p</p>
+                <hr>
+                <p>Usage: play [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>queue</h3>
+                <p>Show the current queue.</p>
+                <p>Aliases: q</p>
+                <hr>
+                <p>Usage: queue</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>restart</h3>
+                <p>Restart the current song</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: restart</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>resume</h3>
+                <p>Resume the current music.</p>
+                <p>Aliases: res</p>
+                <hr>
+                <p>Usage: resume</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>seek</h3>
+                <p>Skip to a certain time in the song</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: seek <time></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>shuffle</h3>
+                <p>Shuffle the order of the queue.</p>
+                <p>Aliases: shuf</p>
+                <hr>
+                <p>Usage: shuffle</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>skip</h3>
+                <p>Skip the current music.</p>
+                <p>Aliases: sk</p>
+                <hr>
+                <p>Usage: skip</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>soundcloud</h3>
+                <p>Search for a song on SoundCloud</p>
+                <p>Aliases: sc</p>
+                <hr>
+                <p>Usage: soundcloud [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>spotify</h3>
+                <p>Search spotify for a song</p>
+                <p>Aliases: sp</p>
+                <hr>
+                <p>Usage: spotify [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>volume</h3>
+                <p>Change the music player's volume.</p>
+                <p>Aliases: vol</p>
+                <hr>
+                <p>Usage: volume [volume]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>clearsnipe</h3>
+                <p>Clears the snipes for the current channel</p>
+                <p>Aliases: cs</p>
+                <hr>
+                <p>Usage: clearsnipe</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>prefix</h3>
+                <p>Change the prefix for the server</p>
+                <p>Aliases: setprefix</p>
+                <hr>
+                <p>Usage: prefix <subcommands> (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>removebanner</h3>
+                <p>Remove the banner from the server</p>
+                <p>Aliases: delbanner</p>
+                <hr>
+                <p>Usage: removebanner</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>removeicon</h3>
+                <p>Remove the icon from the server</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: removeicon</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealbanner</h3>
+                <p>Steal the banner of another server using its invite</p>
+                <p>Aliases: stealb</p>
+                <hr>
+                <p>Usage: stealbanner <invite code></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealicon</h3>
+                <p>Steal the icon of another server using its invite</p>
+                <p>Aliases: steali</p>
+                <hr>
+                <p>Usage: stealicon <invite code></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealsplash</h3>
+                <p>Steal the splash of another server using its invite</p>
+                <p>Aliases: steals</p>
+                <hr>
+                <p>Usage: stealsplash <invite code></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>tags</h3>
+                <p>Manage tags</p>
+                <p>Aliases: t</p>
+                <hr>
+                <p>Usage: tags <subcommand> (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>ticket</h3>
+                <p>Set up ticketing system in a specific channel.</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: undefined</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>vanityset</h3>
+                <p>Log available vanities in a channel</p>
+                <p>Aliases: vanity</p>
+                <hr>
+                <p>Usage: vanityset <subcommands> (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>voicemaster</h3>
+                <p>Setup Voicemaster category and channels.</p>
+                <p>Aliases: vm</p>
+                <hr>
+                <p>Usage: voicemaster <subcommands> (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>birthday</h3>
+                <p>See how far your birthday is</p>
+                <p>Aliases: bday</p>
+                <hr>
+                <p>Usage: birthday [month] (day)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>bitcoin</h3>
+                <p>Get the current Bitcoin price</p>
+                <p>Aliases: btc</p>
+                <hr>
+                <p>Usage: bitcoin</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>bmi</h3>
+                <p>Shows the body mass index (BMI)</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: bmi <height> <weight></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>chatgpt</h3>
+                <p>Generate text with prompts</p>
+                <p>Aliases: gpt,ask</p>
+                <hr>
+                <p>Usage: gemini <prompt></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>color</h3>
+                <p>Get a color's hex code</p>
+                <p>Aliases: clr</p>
+                <hr>
+                <p>Usage: color <color></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>convert</h3>
+                <p>Convert a video to an MP3</p>
+                <p>Aliases: mp3</p>
+                <hr>
+                <p>Usage: convert [file]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>createembed</h3>
+                <p>Create and send a custom embed message.</p>
+                <p>Aliases: ce</p>
+                <hr>
+                <p>Usage: createembed [embed code]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>dictionary</h3>
+                <p>Show the definition of a word</p>
+                <p>Aliases: definition,define</p>
+                <hr>
+                <p>Usage: dictionary [word]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>dominant</h3>
+                <p>Get the dominant color of an image</p>
+                <p>Aliases: hex</p>
+                <hr>
+                <p>Usage: dominant <attachment></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>editsnipe</h3>
+                <p>View recently edited messages in the current channel.</p>
+                <p>Aliases: es</p>
+                <hr>
+                <p>Usage: editsnipe</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>emojizip</h3>
+                <p>Download all emojis and send in zip</p>
+                <p>Aliases: zip</p>
+                <hr>
+                <p>Usage: emojizip</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>jumbo</h3>
+                <p>Enlarge an emoji.</p>
+                <p>Aliases: e,enlarge</p>
+                <hr>
+                <p>Usage: enlarge <emoji></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>ethereum</h3>
+                <p>Get the current Ethereum price</p>
+                <p>Aliases: eth</p>
+                <hr>
+                <p>Usage: ethereum</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>image</h3>
+                <p>Search google for images</p>
+                <p>Aliases: img</p>
+                <hr>
+                <p>Usage: image [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>litecoin</h3>
+                <p>Get the current Litecoin price</p>
+                <p>Aliases: ltc</p>
+                <hr>
+                <p>Usage: litecoin</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>note</h3>
+                <p>Add or view notes for users in the guild</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: note <subcommand> (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>reactionsnipe</h3>
+                <p>Snipe a recently removed reaction</p>
+                <p>Aliases: rs</p>
+                <hr>
+                <p>Usage: reactionsnipe</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>screenshot</h3>
+                <p>Takes a screenshot of a website</p>
+                <p>Aliases: ss</p>
+                <hr>
+                <p>Usage: screenshot [url]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>setbanner</h3>
+                <p>Set the banner of the server.</p>
+                <p>Aliases: editbanner</p>
+                <hr>
+                <p>Usage: setbanner <image></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>seticon</h3>
+                <p>Set the icon of the server.</p>
+                <p>Aliases: editicon</p>
+                <hr>
+                <p>Usage: seticon <image></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>setname</h3>
+                <p>Set the name of the server.</p>
+                <p>Aliases: editname</p>
+                <hr>
+                <p>Usage: setname <name></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>setsplash</h3>
+                <p>Set the splash of the server.</p>
+                <p>Aliases: editsplash</p>
+                <hr>
+                <p>Usage: setsplash <image></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>snipe</h3>
+                <p>Snipe a recently deleted message</p>
+                <p>Aliases: s</p>
+                <hr>
+                <p>Usage: snipe</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealemoji</h3>
+                <p>Add an emoji to your server</p>
+                <p>Aliases: addemoji,steal</p>
+                <hr>
+                <p>Usage: stealemoji [emoji]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealmany</h3>
+                <p>Add multiple emojis to your server</p>
+                <p>Aliases: addmany</p>
+                <hr>
+                <p>Usage: stealmany [emoji] [emoji] [emoji]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>timezone</h3>
+                <p>View a location's timezone</p>
+                <p>Aliases: tz</p>
+                <hr>
+                <p>Usage: timezone [city]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>translate</h3>
+                <p>Translate text between languages</p>
+                <p>Aliases: tr</p>
+                <hr>
+                <p>Usage: translate <language> <text></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>vanitycheck</h3>
+                <p>Check if a vanity URL is available</p>
+                <p>Aliases: vanity</p>
+                <hr>
+                <p>Usage: vanitycheck <vanity></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>weather</h3>
+                <p>View the weather in a certain location</p>
+                <p>Aliases: wthr</p>
+                <hr>
+                <p>Usage: weather [location]</p>
+            </div>
+        </div><div class="category" id="fun">
+            <div class="command-box">
+                <h3>8ball</h3>
+                <p>Ask the 8ball a question</p>
+                <p>Aliases: 8b</p>
+                <hr>
+                <p>Usage: 8ball <question></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>balance</h3>
+                <p>Check the balance of your bank account</p>
+                <p>Aliases: bal</p>
+                <hr>
+                <p>Usage: balance</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>cuddle</h3>
+                <p>cuddle a server member</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: cuddle <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>deposit</h3>
+                <p>Deposit money from your balance to your bank account.</p>
+                <p>Aliases: dep</p>
+                <hr>
+                <p>Usage: deposit <amount></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>divorce</h3>
+                <p>Divorce your partner</p>
+                <p>Aliases: dvc</p>
+                <hr>
+                <p>Usage: divorce</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>donate</h3>
+                <p>Donate money to another member</p>
+                <p>Aliases: give</p>
+                <hr>
+                <p>Usage: donate <user> (amount)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>esex</h3>
+                <p>Get down and dirty with the bot</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: esex</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>gamble</h3>
+                <p>Gamble your coins for a chance to win or lose</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: gamble <amount></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>generate</h3>
+                <p>Generate an image based on a prompt</p>
+                <p>Aliases: ai</p>
+                <hr>
+                <p>Usage: generate <prompt></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>joke</h3>
+                <p>Get a random joke</p>
+                <p>Aliases: jk</p>
+                <hr>
+                <p>Usage: joke</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>kiss</h3>
+                <p>Kiss a server member</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: kiss <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>marriage</h3>
+                <p>See who a user is married to</p>
+                <p>Aliases: married</p>
+                <hr>
+                <p>Usage: marriage <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>marry</h3>
+                <p>Marry a server member.</p>
+                <p>Aliases: mrryto</p>
+                <hr>
+                <p>Usage: marry <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>rockpaperscissors</h3>
+                <p>Play rock paper scissors with another user</p>
+                <p>Aliases: rps</p>
+                <hr>
+                <p>Usage: rockpaperscissors <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>tickle</h3>
+                <p>tickle a server member</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: tickle <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>uwuify</h3>
+                <p>Uwuify a string of text</p>
+                <p>Aliases: uwu</p>
+                <hr>
+                <p>Usage: uwuify [text]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>withdrawal</h3>
+                <p>Withdraw money from your bank account to your balance.</p>
+                <p>Aliases: with,wd</p>
+                <hr>
+                <p>Usage: withdrawal <amount></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>work</h3>
+                <p>Work to earn coins</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: work</p>
+            </div>
+        </div><div class="category" id="information">
+            <div class="command-box">
+                <h3>avatar</h3>
+                <p>Show the avatar of a specified user.</p>
+                <p>Aliases: av</p>
+                <hr>
+                <p>Usage: avatar [user]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>banner</h3>
+                <p>View a user's banner.</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: banner [user]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>boosters</h3>
+                <p>Shows the members who have boosted the server.</p>
+                <p>Aliases: boosters</p>
+                <hr>
+                <p>Usage: boosters</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>botinfo</h3>
+                <p>Shows information about the bot</p>
+                <p>Aliases: about,bi</p>
+                <hr>
+                <p>Usage: botinfo</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>bots</h3>
+                <p>Shows the bots in the server.</p>
+                <p>Aliases: bots</p>
+                <hr>
+                <p>Usage: bots</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>channels</h3>
+                <p>Shows all channels in the server</p>
+                <p>Aliases: channel</p>
+                <hr>
+                <p>Usage: channels</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>firstmembers</h3>
+                <p>Shows the first members to join the server</p>
+                <p>Aliases: recent</p>
+                <hr>
+                <p>Usage: recentmembers</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>firstmessage</h3>
+                <p>Provides the first message of a channel.</p>
+                <p>Aliases: firstmsg</p>
+                <hr>
+                <p>Usage: firstmessage</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>help</h3>
+                <p>Displays a list of available commands.</p>
+                <p>Aliases: commands,h,cmds</p>
+                <hr>
+                <p>Usage: help [command]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>invite</h3>
+                <p>Invite the bot to your server</p>
+                <p>Aliases: i</p>
+                <hr>
+                <p>Usage: invite</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>invites</h3>
+                <p>Shows the invites of the server.</p>
+                <p>Aliases: inv</p>
+                <hr>
+                <p>Usage: invites</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>joinposition</h3>
+                <p>View the join position of a member.</p>
+                <p>Aliases: jp</p>
+                <hr>
+                <p>Usage: joinposition [member]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>membercount</h3>
+                <p>Shows member count.</p>
+                <p>Aliases: mc,members</p>
+                <hr>
+                <p>Usage: membercount</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>oldest</h3>
+                <p>Shows the oldest members in the server.</p>
+                <p>Aliases: ancient</p>
+                <hr>
+                <p>Usage: oldest</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>ping</h3>
+                <p>Shows the bot's ping.</p>
+                <p>Aliases: latency</p>
+                <hr>
+                <p>Usage: ping</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>recentmembers</h3>
+                <p>Shows the most recent members that joined the server.</p>
+                <p>Aliases: recent</p>
+                <hr>
+                <p>Usage: recentmembers</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>roleinfo</h3>
+                <p>View information about a role</p>
+                <p>Aliases: rinfo</p>
+                <hr>
+                <p>Usage: roleinfo</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>roles</h3>
+                <p>Shows all roles in the server</p>
+                <p>Aliases: role</p>
+                <hr>
+                <p>Usage: roles</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>serverbanner</h3>
+                <p>Show the server banner.</p>
+                <p>Aliases: sbanner</p>
+                <hr>
+                <p>Usage: serverbanner [invite]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>servericon</h3>
+                <p>Show the server icon.</p>
+                <p>Aliases: icon,sicon</p>
+                <hr>
+                <p>Usage: servericon [invite]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>serverinfo</h3>
+                <p>View server information</p>
+                <p>Aliases: si</p>
+                <hr>
+                <p>Usage: serverinfo</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>supportserver</h3>
+                <p>Shows bot support.</p>
+                <p>Aliases: support</p>
+                <hr>
+                <p>Usage: support</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>uptime</h3>
+                <p>Shows bot uptime.</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: uptime</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>userinfo</h3>
+                <p>Get information about a user</p>
+                <p>Aliases: ui</p>
+                <hr>
+                <p>Usage: userinfo <@user></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>vanityuses</h3>
+                <p>Check how many uses your vanity has</p>
+                <p>Aliases: uses</p>
+                <hr>
+                <p>Usage: vanityuses</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>youngest</h3>
+                <p>Shows the youngest members in the server.</p>
+                <p>Aliases: youth</p>
+                <hr>
+                <p>Usage: youngest</p>
+            </div>
+        </div><div class="category" id="lastfm">
+            <div class="command-box">
+                <h3>lastfm</h3>
+                <p>Interact with your music</p>
+                <p>Aliases: lf</p>
+                <hr>
+                <p>Usage: lastfm set larplol</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>nowplaying</h3>
+                <p>Shows your most recent track</p>
+                <p>Aliases: fm,np</p>
+                <hr>
+                <p>Usage: nowplaying</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>profile</h3>
+                <p>View a Last.fm profile</p>
+                <p>Aliases: pf</p>
+                <hr>
+                <p>Usage: profile [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>recent</h3>
+                <p>Shows your most recent tracks</p>
+                <p>Aliases: recenttracks,recentlyplayed</p>
+                <hr>
+                <p>Usage: recent</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>recommend</h3>
+                <p>Recommend a random track based on your listening history</p>
+                <p>Aliases: rec</p>
+                <hr>
+                <p>Usage: recommend</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>topalbums</h3>
+                <p>View your top albums on LastFM</p>
+                <p>Aliases: tal,topalb</p>
+                <hr>
+                <p>Usage: topalbums</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>topartists</h3>
+                <p>View your top artists on LastFM</p>
+                <p>Aliases: topar,ta</p>
+                <hr>
+                <p>Usage: topartists</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>toptracks</h3>
+                <p>View your top tracks on LastFM</p>
+                <p>Aliases: ttr,ttt</p>
+                <hr>
+                <p>Usage: toptracks</p>
+            </div>
+        </div><div class="category" id="miscellaneous">
+            <div class="command-box">
+                <h3>appstore</h3>
+                <p>Search for an app on the App Store.</p>
+                <p>Aliases: playstore,app</p>
+                <hr>
+                <p>Usage: appstore <query></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>cashapp</h3>
+                <p>View a CashApp profile</p>
+                <p>Aliases: ca</p>
+                <hr>
+                <p>Usage: cashapp [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>fortnite</h3>
+                <p>Fortnite cosmetic-related commands</p>
+                <p>Aliases: fort,fn</p>
+                <hr>
+                <p>Usage: fortnite (subcommands) <args></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>gemini</h3>
+                <p>Generate text with prompts</p>
+                <p>Aliases: gpt,ask,chatgpt</p>
+                <hr>
+                <p>Usage: gemini <prompt></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>github</h3>
+                <p>View a github profile</p>
+                <p>Aliases: git,gh</p>
+                <hr>
+                <p>Usage: github [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>google</h3>
+                <p>Search Google and display the top results</p>
+                <p>Aliases: g</p>
+                <hr>
+                <p>Usage: google <query></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>instagram</h3>
+                <p>Get information on an Instagram profile</p>
+                <p>Aliases: insta,ig</p>
+                <hr>
+                <p>Usage: instagram [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>movie</h3>
+                <p>Get the information about a movie or series.</p>
+                <p>Aliases: series,show</p>
+                <hr>
+                <p>Usage: movie [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>ocr</h3>
+                <p>Extract text from an image</p>
+                <p>Aliases: read</p>
+                <hr>
+                <p>Usage: ocr [attachment]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>pinterestboard</h3>
+                <p>Search pins or view a user's pins on Pinterest</p>
+                <p>Aliases: pint</p>
+                <hr>
+                <p>Usage: pinterest add [channel] (username)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>playstation</h3>
+                <p>Search for a playstation profile</p>
+                <p>Aliases: psn</p>
+                <hr>
+                <p>Usage: playstation [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>pokemon</h3>
+                <p>View information about a Pokémon</p>
+                <p>Aliases: pokedex</p>
+                <hr>
+                <p>Usage: pokedex <pokemon></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>giphy</h3>
+                <p>Search Giphy for a GIF.</p>
+                <p>Aliases: gif</p>
+                <hr>
+                <p>Usage: giphy [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>roblox</h3>
+                <p>Get Roblox user information</p>
+                <p>Aliases: rblx</p>
+                <hr>
+                <p>Usage: roblox [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>snapchat</h3>
+                <p>Search snapchat for a profile</p>
+                <p>Aliases: sc</p>
+                <hr>
+                <p>Usage: snapchat [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>steam</h3>
+                <p>Search Steam for a game</p>
+                <p>Aliases: steamgame</p>
+                <hr>
+                <p>Usage: steam <game></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>telegram</h3>
+                <p>View a Telegram user's information</p>
+                <p>Aliases: tele</p>
+                <hr>
+                <p>Usage: telegram [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>tiktok</h3>
+                <p>Get information on a TikTok profile</p>
+                <p>Aliases: tt</p>
+                <hr>
+                <p>Usage: tiktok [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>twitch</h3>
+                <p>Get Twitch user information</p>
+                <p>Aliases: ttv</p>
+                <hr>
+                <p>Usage: twitch [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>twitter</h3>
+                <p>View a twitter profile</p>
+                <p>Aliases: x</p>
+                <hr>
+                <p>Usage: twitter [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>urban</h3>
+                <p>Shows the definition of a word from Urban Dictionary</p>
+                <p>Aliases: ud</p>
+                <hr>
+                <p>Usage: urban [word]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>valorant</h3>
+                <p>Get information on a Valorant profile</p>
+                <p>Aliases: val</p>
+                <hr>
+                <p>Usage: valorant [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>wikipedia</h3>
+                <p>Search wiki for a query</p>
+                <p>Aliases: wiki</p>
+                <hr>
+                <p>Usage: wikipedia [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>wolfram</h3>
+                <p>Get math answers</p>
+                <p>Aliases: w</p>
+                <hr>
+                <p>Usage: wolfram [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>xbox</h3>
+                <p>View a xbox profile</p>
+                <p>Aliases: xb,xbl</p>
+                <hr>
+                <p>Usage: xbox [username]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>youtube</h3>
+                <p>Searches youtube for video query</p>
+                <p>Aliases: yt</p>
+                <hr>
+                <p>Usage: youtube [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>chatgpt</h3>
+                <p>Generate text with prompts</p>
+                <p>Aliases: gpt,ask</p>
+                <hr>
+                <p>Usage: gemini <prompt></p>
+            </div>
+        </div><div class="category" id="moderation">
+            <div class="command-box">
+                <h3>ban</h3>
+                <p>Banishes a server member.</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: ban <user> <reason></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>banlist</h3>
+                <p>Shows all banned users in the server</p>
+                <p>Aliases: bans</p>
+                <hr>
+                <p>Usage: banlist</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>cleanup</h3>
+                <p>Purge messages from bots and common prefixes.</p>
+                <p>Aliases: bc,botclear</p>
+                <hr>
+                <p>Usage: cleanup</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>hide</h3>
+                <p>Hide the channel from everyone or a specific role/user.</p>
+                <p>Aliases: hidden</p>
+                <hr>
+                <p>Usage: hide</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>jail</h3>
+                <p>Jails the specified member (sets up upon first use)</p>
+                <p>Aliases: prison</p>
+                <hr>
+                <p>Usage: jail [user] (reason)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>kick</h3>
+                <p>Kicks mentioned user.</p>
+                <p>Aliases: k</p>
+                <hr>
+                <p>Usage: kick [user] (reason)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>lockdown</h3>
+                <p>Locks the channel from everyone</p>
+                <p>Aliases: lock</p>
+                <hr>
+                <p>Usage: lock</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>nuke</h3>
+                <p>Deletes and recreates the current channel.</p>
+                <p>Aliases: recreate</p>
+                <hr>
+                <p>Usage: nuke</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>removejail</h3>
+                <p>Remove the jail from the server</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: removejail</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>role</h3>
+                <p>Manage server roles</p>
+                <p>Aliases: r</p>
+                <hr>
+                <p>Usage: role [subcommand] (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>slowmode</h3>
+                <p>Set the slowmode of a channel</p>
+                <p>Aliases: sm</p>
+                <hr>
+                <p>Usage: slowmode [time]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>softban</h3>
+                <p>Bans a user then unbans instantly</p>
+                <p>Aliases: sb</p>
+                <hr>
+                <p>Usage: softban [member]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>striproles</h3>
+                <p>Strip all of a users roles</p>
+                <p>Aliases: strip</p>
+                <hr>
+                <p>Usage: strip <member></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>timeout</h3>
+                <p>Temporary timeout a member from the server.</p>
+                <p>Aliases: to</p>
+                <hr>
+                <p>Usage: undefined</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>topic</h3>
+                <p>Set the topic of a channel</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: topic [channel] (topic)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unban</h3>
+                <p>Unban a user by ID or username</p>
+                <p>Aliases: pardon,forgive</p>
+                <hr>
+                <p>Usage: unban [userID]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unhide</h3>
+                <p>Unhides the channel for everyone</p>
+                <p>Aliases: uh</p>
+                <hr>
+                <p>Usage: unhide</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unjail</h3>
+                <p>Release a user from the shackles</p>
+                <p>Aliases: unprison</p>
+                <hr>
+                <p>Usage: unjail [user]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unjailrole</h3>
+                <p>Set the jail role for unjailing users</p>
+                <p>Aliases: ujr</p>
+                <hr>
+                <p>Usage: undefined</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>unlock</h3>
+                <p>Unlocks the channel for everyone</p>
+                <p>Aliases: ulock</p>
+                <hr>
+                <p>Usage: unlock</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>warn</h3>
+                <p>Warn a server member.</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: warn <user> <reason></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>warnings</h3>
+                <p>View warnings of a server member.</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: warnings <user></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>removeicon</h3>
+                <p>Remove the icon from the server</p>
+                <p>Aliases: </p>
+                <hr>
+                <p>Usage: removeicon</p>
+            </div>
+        </div><div class="category" id="music">
+            <div class="command-box">
+                <h3>clearqueue</h3>
+                <p>Clear the queue.</p>
+                <p>Aliases: cq</p>
+                <hr>
+                <p>Usage: clearqueue</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>currentsong</h3>
+                <p>Show the current song playing</p>
+                <p>Aliases: current</p>
+                <hr>
+                <p>Usage: currentsong</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>disconnect</h3>
+                <p>Disconnect the bot from the voice channel.</p>
+                <p>Aliases: dc</p>
+                <hr>
+                <p>Usage: disconnect</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>filter</h3>
+                <p>Set Music Filter</p>
+                <p>Aliases: filters,setfilter</p>
+                <hr>
+                <p>Usage: filter [filter]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>itunes</h3>
+                <p>Search iTunes for a song</p>
+                <p>Aliases: itu</p>
+                <hr>
+                <p>Usage: itunes [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>loop</h3>
+                <p>Loop the current song</p>
+                <p>Aliases: lp</p>
+                <hr>
+                <p>Usage: loop <on/off></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>pause</h3>
+                <p>Pause the current music.</p>
+                <p>Aliases: pa</p>
+                <hr>
+                <p>Usage: pause</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>play</h3>
+                <p>Play some music.</p>
+                <p>Aliases: p</p>
+                <hr>
+                <p>Usage: play [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>queue</h3>
+                <p>Show the current queue.</p>
+                <p>Aliases: q</p>
+                <hr>
+                <p>Usage: queue</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>restart</h3>
+                <p>Restart the current song</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: restart</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>resume</h3>
+                <p>Resume the current music.</p>
+                <p>Aliases: res</p>
+                <hr>
+                <p>Usage: resume</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>seek</h3>
+                <p>Skip to a certain time in the song</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: seek <time></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>shuffle</h3>
+                <p>Shuffle the order of the queue.</p>
+                <p>Aliases: shuf</p>
+                <hr>
+                <p>Usage: shuffle</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>skip</h3>
+                <p>Skip the current music.</p>
+                <p>Aliases: sk</p>
+                <hr>
+                <p>Usage: skip</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>soundcloud</h3>
+                <p>Search for a song on SoundCloud</p>
+                <p>Aliases: sc</p>
+                <hr>
+                <p>Usage: soundcloud [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>spotify</h3>
+                <p>Search spotify for a song</p>
+                <p>Aliases: sp</p>
+                <hr>
+                <p>Usage: spotify [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>volume</h3>
+                <p>Change the music player's volume.</p>
+                <p>Aliases: vol</p>
+                <hr>
+                <p>Usage: volume [volume]</p>
+            </div>
+        </div><div class="category" id="servers">
+            <div class="command-box">
+                <h3>clearsnipe</h3>
+                <p>Clears the snipes for the current channel</p>
+                <p>Aliases: cs</p>
+                <hr>
+                <p>Usage: clearsnipe</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>prefix</h3>
+                <p>Change the prefix for the server</p>
+                <p>Aliases: setprefix</p>
+                <hr>
+                <p>Usage: prefix <subcommands> (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>removebanner</h3>
+                <p>Remove the banner from the server</p>
+                <p>Aliases: delbanner</p>
+                <hr>
+                <p>Usage: removebanner</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealbanner</h3>
+                <p>Steal the banner of another server using its invite</p>
+                <p>Aliases: stealb</p>
+                <hr>
+                <p>Usage: stealbanner <invite code></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealicon</h3>
+                <p>Steal the icon of another server using its invite</p>
+                <p>Aliases: steali</p>
+                <hr>
+                <p>Usage: stealicon <invite code></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealsplash</h3>
+                <p>Steal the splash of another server using its invite</p>
+                <p>Aliases: steals</p>
+                <hr>
+                <p>Usage: stealsplash <invite code></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>tags</h3>
+                <p>Manage tags</p>
+                <p>Aliases: t</p>
+                <hr>
+                <p>Usage: tags <subcommand> (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>ticket</h3>
+                <p>Set up ticketing system in a specific channel.</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: undefined</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>vanityset</h3>
+                <p>Log available vanities in a channel</p>
+                <p>Aliases: vanity</p>
+                <hr>
+                <p>Usage: vanityset <subcommands> (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>voicemaster</h3>
+                <p>Setup Voicemaster category and channels.</p>
+                <p>Aliases: vm</p>
+                <hr>
+                <p>Usage: voicemaster <subcommands> (args)</p>
+            </div>
+        </div><div class="category" id="utility">
+            <div class="command-box">
+                <h3>birthday</h3>
+                <p>See how far your birthday is</p>
+                <p>Aliases: bday</p>
+                <hr>
+                <p>Usage: birthday [month] (day)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>bitcoin</h3>
+                <p>Get the current Bitcoin price</p>
+                <p>Aliases: btc</p>
+                <hr>
+                <p>Usage: bitcoin</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>bmi</h3>
+                <p>Shows the body mass index (BMI)</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: bmi <height> <weight></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>color</h3>
+                <p>Get a color's hex code</p>
+                <p>Aliases: clr</p>
+                <hr>
+                <p>Usage: color <color></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>convert</h3>
+                <p>Convert a video to an MP3</p>
+                <p>Aliases: mp3</p>
+                <hr>
+                <p>Usage: convert [file]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>createembed</h3>
+                <p>Create and send a custom embed message.</p>
+                <p>Aliases: ce</p>
+                <hr>
+                <p>Usage: createembed [embed code]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>dictionary</h3>
+                <p>Show the definition of a word</p>
+                <p>Aliases: definition,define</p>
+                <hr>
+                <p>Usage: dictionary [word]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>dominant</h3>
+                <p>Get the dominant color of an image</p>
+                <p>Aliases: hex</p>
+                <hr>
+                <p>Usage: dominant <attachment></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>editsnipe</h3>
+                <p>View recently edited messages in the current channel.</p>
+                <p>Aliases: es</p>
+                <hr>
+                <p>Usage: editsnipe</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>emojizip</h3>
+                <p>Download all emojis and send in zip</p>
+                <p>Aliases: zip</p>
+                <hr>
+                <p>Usage: emojizip</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>jumbo</h3>
+                <p>Enlarge an emoji.</p>
+                <p>Aliases: e,enlarge</p>
+                <hr>
+                <p>Usage: enlarge <emoji></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>ethereum</h3>
+                <p>Get the current Ethereum price</p>
+                <p>Aliases: eth</p>
+                <hr>
+                <p>Usage: ethereum</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>image</h3>
+                <p>Search google for images</p>
+                <p>Aliases: img</p>
+                <hr>
+                <p>Usage: image [query]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>litecoin</h3>
+                <p>Get the current Litecoin price</p>
+                <p>Aliases: ltc</p>
+                <hr>
+                <p>Usage: litecoin</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>note</h3>
+                <p>Add or view notes for users in the guild</p>
+                <p>Aliases: none</p>
+                <hr>
+                <p>Usage: note <subcommand> (args)</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>reactionsnipe</h3>
+                <p>Snipe a recently removed reaction</p>
+                <p>Aliases: rs</p>
+                <hr>
+                <p>Usage: reactionsnipe</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>screenshot</h3>
+                <p>Takes a screenshot of a website</p>
+                <p>Aliases: ss</p>
+                <hr>
+                <p>Usage: screenshot [url]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>setbanner</h3>
+                <p>Set the banner of the server.</p>
+                <p>Aliases: editbanner</p>
+                <hr>
+                <p>Usage: setbanner <image></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>seticon</h3>
+                <p>Set the icon of the server.</p>
+                <p>Aliases: editicon</p>
+                <hr>
+                <p>Usage: seticon <image></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>setname</h3>
+                <p>Set the name of the server.</p>
+                <p>Aliases: editname</p>
+                <hr>
+                <p>Usage: setname <name></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>setsplash</h3>
+                <p>Set the splash of the server.</p>
+                <p>Aliases: editsplash</p>
+                <hr>
+                <p>Usage: setsplash <image></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>snipe</h3>
+                <p>Snipe a recently deleted message</p>
+                <p>Aliases: s</p>
+                <hr>
+                <p>Usage: snipe</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealemoji</h3>
+                <p>Add an emoji to your server</p>
+                <p>Aliases: addemoji,steal</p>
+                <hr>
+                <p>Usage: stealemoji [emoji]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>stealmany</h3>
+                <p>Add multiple emojis to your server</p>
+                <p>Aliases: addmany</p>
+                <hr>
+                <p>Usage: stealmany [emoji] [emoji] [emoji]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>timezone</h3>
+                <p>View a location's timezone</p>
+                <p>Aliases: tz</p>
+                <hr>
+                <p>Usage: timezone [city]</p>
+            </div>
+        
+            <div class="command-box">
+                <h3>translate</h3>
+                <p>Translate text between languages</p>
+                <p>Aliases: tr</p>
+                <hr>
+                <p>Usage: translate <language> <text></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>vanitycheck</h3>
+                <p>Check if a vanity URL is available</p>
+                <p>Aliases: vanity</p>
+                <hr>
+                <p>Usage: vanitycheck <vanity></p>
+            </div>
+        
+            <div class="command-box">
+                <h3>weather</h3>
+                <p>View the weather in a certain location</p>
+                <p>Aliases: wthr</p>
+                <hr>
+                <p>Usage: weather [location]</p>
+            </div>
+        </div></div>
+<script>
+    function showAllCommands() {
+        const categories = document.getElementsByClassName('category');
+        for (let i = 0; i < categories.length; i++) {
+            categories[i].style.display = 'block';
+        }
+        const tabs = document.getElementsByClassName('tab');
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove('active');
+        }
+        document.querySelector('.tab[data-module="all"]').classList.add('active');
+    }
+
+    function showModule(module) {
+        const categories = document.getElementsByClassName('category');
+        for (let i = 0; i < categories.length; i++) {
+            categories[i].style.display = 'none';
+        }
+        document.getElementById(module).style.display = 'block';
+        
+        const tabs = document.getElementsByClassName('tab');
+        for (let i = 0; i < tabs.length; i++) {
+            tabs[i].classList.remove('active');
+        }
+        document.querySelector('.tab[data-module="' + module + '"]').classList.add('active');
+    }
+</script>
+</body>
+</html>
